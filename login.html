@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<!--nav bar -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <img src="image/shoplogo.jpg" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-5">
+            <a class="nav-link active" aria-current="page" href="demo1.html">HOME</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="Categories.html">CATEGORIES</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="about.html">ABOUT</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="contact.html">CONTACT</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="login.html">LOGIN</a>
+          </li>
+          <!-- Place this inside your navbar, e.g., after LOGIN link -->
+          <li class="nav-item me-5">
+            <a class="nav-link position-relative" href="cart.html">
+              🛒 Cart
+              <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!--Login-->
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <h1 class="mb-4">WELCOME BACK</h1>
+    <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+      <h4 class="mb-4 text-center">Login</h4>
+      <form class="w-100">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username or E-mail</label>
+          <input type="email" size="20" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit"  onclick="window.location.href='demo1.html'" class="btn btn-primary">Login</button>
+        <button type="button" onclick="window.location.href='register.html'" class="btn btn-secondary">Register</button>
+
+      
+         <!-- Forgot password link -->
+         <div class="col-12 text-center mt-3">
+            <a href="#" class="text-decoration-none">Forgot your password?</a>
+          </div>
+
+
+      </form>
+    </div>
+  </div>
+
+
+ <div class="container text-center bg-light mt-5">
+
+    </div>
+
+    <div class="row mx-5">
+        <div class="col">
+            <img src="image/shoplogo.jpg" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+            <p>As a family-run business,we know the importance of exceptional customer service.</p>
+
+        </div>
+        <div class="col">
+            <h4>CONTACT US</h4>
+            <p>PICKUP STORE LOCATION</p>
+            <p>Coimbatore,TamilNadu,India</p>
+            <p>9087657756</p>
+            <p>asdas@gmail.com</p>
+        </div>
+        <div class="col">
+            <h4>COMPANY</h4>
+            <ul>
+                <li>Bulk Orders</li>
+                <li>Privacy Policy</li>
+                <li>Terms &amp; Conditions</li>
+                <li>Payments &amp; Returns</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h4>NEWSLETTER</h4>
+            <p>Subscribe to our Newsletter to get Special Offers and Discounts.</p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Email Address" aria-label="Recipient’s username"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Subscribe</button>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3 bg-dark text-white">
+        Forkids © 2025.All rights reserved
+    </div>
+</body>
+
+</html>

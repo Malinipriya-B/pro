@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="demos1.css">
+  <style>
+    .product-card { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <img src="image/shoplogo.jpg" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-5">
+            <a class="nav-link active" aria-current="page" href="demo1.html">HOME</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="Categories.html">CATEGORIES</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="about.html">ABOUT</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="contact.html">CONTACT</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="login.html">LOGIN</a>
+          </li>
+          <!-- Place this inside your navbar, e.g., after LOGIN link -->
+          <li class="nav-item me-5">
+            <a class="nav-link position-relative" href="cart.html">
+              🛒 Cart
+              <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Main Container -->
+<div class="container mt-4">
+  <div class="row">
+
+    <!-- Sidebar -->
+    <div class="col-md-3 border-end pe-4">
+      <h5>Search</h5>
+      <input type="text" id="categorySearch" class="form-control mb-3" placeholder="Search categories...">
+
+      <h5 class="mt-4">Filter by Price</h5>
+      <div class="d-flex justify-content-between mb-1"><span>Low</span><span>High</span></div>
+      <input type="range" id="minRange" min="0" max="1000" value="100" step="50">
+      <input type="range" id="maxRange" min="0" max="1000" value="900" step="50">
+      <div class="d-flex justify-content-between mb-3">
+        <div>Min: <strong><span id="minSelectedVal">$100</span></strong></div>
+        <div>Max: <strong><span id="maxSelectedVal">$900</span></strong></div>
+      </div>
+
+      <h5 class="mt-4">Product Category</h5>
+      <ul class="list-group" id="categoryList">
+        <li class="list-group-item"><a href="#" class="category-filter text-decoration-none" data-category="all">All Products</a></li>
+        <li class="list-group-item"><a href="#" class="category-filter text-decoration-none" data-category="art&craft">Art&Craft</a></li>
+        <li class="list-group-item"><a href="#" class="category-filter text-decoration-none" data-category="toys">Toys</a></li>
+        <li class="list-group-item"><a href="#" class="category-filter text-decoration-none" data-category="games">Games</a></li>
+        <li class="list-group-item"><a href="#" class="category-filter text-decoration-none" data-category="sipper and thermos">Sipper and Thermos</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="mb-0" id="categoryHeading">All Products</h2>
+          <small class="text-muted">Showing 1–12 of 833 results</small>
+        </div>
+        <div class="d-flex align-items-center gap-3 mt-2 mt-md-0">
+          <label for="sortSelect" class="form-label mb-0 me-2">Sort by:</label>
+          <select id="sortSelect" class="form-select" style="width: 200px;">
+            <option selected>Price: low to high</option>
+            <option>Price: high to low</option>
+            <option>Sort By Popularity</option>
+            <option>Sort By Average Rating</option>
+            <option>Sort By Latest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" id="productContainer">
+        <!-- Sample Product Cards (Add more as needed) -->
+        <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+          <div class="card h-100">
+            <img src="image/cartoon pouch.jpg" class="card-img-top" alt="Cartoon Pouch">
+            <div class="card-body">
+              <h5 class="card-title">Cartoon Pouch</h5>
+              <p class="card-text">₹80</p>
+               <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="Cartoon Pouch"
+                  data-price="₹80"
+                  data-img="image/cartoon pouch.jpg"
+                  data-description="A cute cartoon pouch perfect for kids' stationery.
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/watermagicbook.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">WATER MAGIC BOOK</h5>
+                <p class="card-text">₹120</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="WATER MAGIC BOOK"
+                  data-price="₹120"
+                  data-img="image/watermagicbook.jpg"
+                  data-description="The Water Magic Book is an innovative, interactive product designed
+                   to make learning fun and engaging. Key features include water-reveal pages that 
+                   display colors and patterns when wet, and revert to white when dry, allowing for 
+                   repeated use. It promotes fine motor skills, early writing/reading skills, and color
+                   recognition. Unique selling points include its eco-friendly design, reusable format, 
+                   and the combination of learning and play.">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/diydiamondkit.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">DIY DIAMOND KIT</h5>
+                <p class="card-text">₹200</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="DIY DIAMOND KIT"
+                  data-price="₹200"
+                  data-img="image/diydiamondkit.jpg"
+                  data-description=" Playing with the DIY diamond painting kit is a meaningful and fun 
+                  activity that stimulates the imagination and creativity of kids. As they use their hands
+                  and mind to create a beautiful painting, they will experience a sense of accomplishment
+                  and satisfaction. The kit provides a valuable way for kids to develop their skills and
+                  express themselves through art.
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/woodenartbag.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">WOODEN ART BAG</h5>
+                <p class="card-text">₹840</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="WOODEN ART BAG"
+                  data-price="₹840"
+                  data-img="image/woodenartbag.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/rollingstamppad.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">ROLLING STAMP PAD</h5>
+                <p class="card-text">₹169</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="ROLLING STAMP PAD"
+                  data-price="₹169"
+                  data-img="image/rollingstamppad.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/minionsketchbox.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">MINION SKETCH BOX</h5>
+                <p class="card-text">₹240</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="MINION SKETCH BOX"
+                  data-price="₹240"
+                  data-img="image/minionsketchbox.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/projectiondrawing table.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">PROJECTION DRAWING TABLE</h5>
+                <p class="card-text">₹770</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="PROJECTION DRAWING TABLE"
+                  data-price="₹770"
+                  data-img="image/projectiondrawing table.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/fingerprintpuppet.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">FINGER PRINT PUPPET</h5>
+                <p class="card-text">₹360</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="FINGER PRINT PUPPET"
+                  data-price="₹360"
+                  data-img="image/fingerprintpuppet.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4 product-card" data-category="art&craft">
+            <div class="card h-100">
+              <img src="image/zigzagscissors.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">ZIG ZAG SCISSORS</h5>
+                <p class="card-text">₹80</p>
+                <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="ZIG ZAG SCISSORS"
+                  data-price="₹80"
+                  data-img="image/zigzagscissors.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+              </div>
+            </div>
+          </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="toys">
+          <div class="card h-100">
+            <img src="image/dumdumrattle.jpg" class="card-img-top" alt="Rattle">
+            <div class="card-body">
+              <h5 class="card-title">Dum Dum Rattle</h5>
+              <p class="card-text">₹99</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="Dum Dum Rattle"
+                  data-price="₹99"
+                  data-img="image/dumdumrattle.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="toys">
+          <div class="card h-100">
+            <img src="image/claymodelling.jpg" class="card-img-top" alt="Rattle">
+            <div class="card-body">
+              <h5 class="card-title">CLAY MODELLING</h5>
+              <p class="card-text">₹199</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="CLAY MODELLING"
+                  data-price="₹199"
+                  data-img="image/claymodelling.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="toys">
+          <div class="card h-100">
+            <img src="image/busybook.jpg" class="card-img-top" alt="Rattle">
+            <div class="card-body">
+              <h5 class="card-title">BUSY BOOK</h5>
+              <p class="card-text">₹250</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="BUSY BOOK"
+                  data-price="₹250"
+                  data-img="image/busybook.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="toys">
+          <div class="card h-100">
+            <img src="image/fishinggame.jpg" class="card-img-top" alt="Rattle">
+            <div class="card-body">
+              <h5 class="card-title">FISHING GAME</h5>
+              <p class="card-text">₹499</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="FISHING GAME"
+                  data-price="₹499"
+                  data-img="image/fishinggame.jpg"
+                  data-description="A cute cartoon pouch perfect for kids' stationery.
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="toys">
+          <div class="card h-100">
+            <img src="image/woodenspinnertop.jpg" class="card-img-top" alt="Rattle">
+            <div class="card-body">
+              <h5 class="card-title">WOODEN SPINNER TOP</h5>
+              <p class="card-text">₹220</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="WOODEN SPINNER TOP"
+                  data-price="₹220"
+                  data-img="image/woodenspinnertop.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="toys">
+          <div class="card h-100">
+            <img src="image/monkeybalance.jpg" class="card-img-top" alt="Rattle">
+            <div class="card-body">
+              <h5 class="card-title">MONKEY BALANCE</h5>
+              <p class="card-text">₹320</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="MONKEY BALANCE"
+                  data-price="₹320"
+                  data-img="image/monkeybalance.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4 mb-4 product-card" data-category="games">
+          <div class="card h-100">
+            <img src="image/handymazeballgame.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">Handy Maze Ball Game</h5>
+              <p class="card-text">₹59</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="Handy Maze Ball Game"
+                  data-price="₹59"
+                  data-img="image/handymazeballgame.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="games">
+          <div class="card h-100">
+            <img src="image/swinginghamster.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">SWINGING HAMSTER</h5>
+              <p class="card-text">₹250</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="SWINGING HAMSTER"
+                  data-price="₹250"
+                  data-img="image/swinginghamster.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="games">
+          <div class="card h-100">
+            <img src="image/PFISHING TOY.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">Fishing Game</h5>
+              <p class="card-text">₹360</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="Fishing Game"
+                  data-price="₹360"
+                  data-img="image/PFISHING TOY.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="games">
+          <div class="card h-100">
+            <img src="image/magicbean.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">MAGIC BEAN</h5>
+              <p class="card-text">₹160</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="MAGIC BEAN"
+                  data-price="₹160"
+                  data-img="image/magicbean.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="games">
+          <div class="card h-100">
+            <img src="image/tictaetoe.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">TIC TAE TOE GAME</h5>
+              <p class="card-text">₹180</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="TIC TAE TOE GAME"
+                  data-price="₹180"
+                  data-img="image/tictaetoe.jpg"
+                  data-description="A cute tictaetoe perfect for kids' stationery.
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="sipper and thermos">
+          <div class="card h-100">
+            <img src="image/glassmugwithstraw.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">TRANSPARENT GLASS MUG</h5>
+              <p class="card-text">₹140.</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="TRANSPARENT GLASS MUG"
+                  data-price="₹140"
+                  data-img="image/glassmugwithstraw.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="sipper and thermos">
+          <div class="card h-100">
+            <img src="image/sipperhornbottle.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">SIPPER HORN BOTTLE</h5>
+              <p class="card-text">₹199</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="SIPPER HORN BOTTLE"
+                  data-price="₹199"
+                  data-img="image/sipperhornbottle.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="sipper and thermos">
+          <div class="card h-100">
+            <img src="image/submarinethermos.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">SUBMARINE THERMOS</h5>
+              <p class="card-text">₹899</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="SUBMARINE THERMOS"
+                  data-price="₹899"
+                  data-img="image/submarinethermos.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="sipper and thermos">
+          <div class="card h-100">
+            <img src="image/teddyglassbottle.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">TEDDY GLASS BOTTLE</h5>
+              <p class="card-text">₹549</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="TEDDY GLASS BOTTLE"
+                  data-price="₹549"
+                  data-img="image/teddyglassbottle.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 product-card" data-category="sipper and thermos">
+          <div class="card h-100">
+            <img src="image/vacuumspoutthermos.jpg" class="card-img-top" alt="Maze Game">
+            <div class="card-body">
+              <h5 class="card-title">VACUUM SPOUT THERMOS</h5>
+              <p class="card-text">₹280</p>
+              <a href="#" 
+                  class="btn btn-primary view-btn"
+                  data-name="VACUUM SPOUT THERMOS"
+                  data-price="₹280"
+                  data-img="image/vacuumspoutthermos.jpg"
+                  data-description="
+                   🦄 Adorable cartoon Design :Features a colorful design on a cheerful background
+                    🧵 Soft & Durable Neoprene : Made from tactile neoprene material that’s both soft and sturdy
+                    🖊️ Generously Sized : Spacious enough to hold pens, pencils, erasers, and more
+                    🎁 Perfect Return Gift : Great choice for birthday party favors or special treats">
+                  View
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more product cards with appropriate data-category values -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Product Detail Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productModalLabel">Product Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="productImage" src="" alt="Product Image" class="img-fluid mb-3" style="max-height: 200px;">
+        <p id="productDescription" class="text-start"></p>
+        <p class="fw-bold" id="productPrice"></p>
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity:</label>
+          <input type="number" id="quantity" class="form-control w-50 mx-auto" min="1" value="1">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" id="addToCartBtn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- JS Script -->
+<script>
+  // Filter functionality
+  const categoryLinks = document.querySelectorAll('.category-filter');
+  const products = document.querySelectorAll('.product-card');
+  const heading = document.getElementById('categoryHeading');
+
+  function updateProducts(category) {
+    products.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    heading.textContent = category === 'all' ? 'All Products' : category.replace(/&/g, ' & ').replace(/^\w/, c => c.toUpperCase());
+  }
+
+  categoryLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const category = this.dataset.category;
+      updateProducts(category);
+    });
+  });
+
+  // Initial display
+  updateProducts('all');
+
+  // Price slider display update
+  const minRange = document.getElementById("minRange");
+  const maxRange = document.getElementById("maxRange");
+  const minVal = document.getElementById("minSelectedVal");
+  const maxVal = document.getElementById("maxSelectedVal");
+
+  function updateSlider() {
+    minVal.textContent = `$${minRange.value}`;
+    maxVal.textContent = `$${maxRange.value}`;
+  }
+
+  minRange.addEventListener("input", updateSlider);
+  maxRange.addEventListener("input", updateSlider);
+
+
+
+   // View button functionality
+  const viewButtons = document.querySelectorAll('.view-btn');
+
+  const modalTitle = document.getElementById('productModalLabel');
+  const modalImage = document.getElementById('modalImage');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalDescription = document.getElementById('modalDescription');
+
+  viewButtons.forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const name = this.dataset.name;
+      const price = this.dataset.price;
+      const img = this.dataset.img;
+      const description = this.dataset.description;
+
+      modalTitle.textContent = name;
+      modalPrice.textContent = price;
+      modalImage.src = img;
+      modalDescription.textContent = description;
+
+      const modal = new bootstrap.Modal(document.getElementById('productModal'));
+      modal.show();
+    });
+  });
+
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("categorySearch");
+    const categoryItems = document.querySelectorAll("#categoryList li");
+
+    searchInput.addEventListener("input", function () {
+      const searchTerm = this.value.toLowerCase();
+      categoryItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(searchTerm) ? "" : "none";
+      });
+    });
+  });
+
+  const viewButton = document.querySelectorAll('.view-btn');
+  const modal = new bootstrap.Modal(document.getElementById('productModal'));
+
+  viewButtons.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); // prevent default link behavior
+
+      // Set modal content
+      document.getElementById('productModalLabel').textContent = this.dataset.name;
+      document.getElementById('productImage').src = this.dataset.img;
+      document.getElementById('productPrice').textContent = this.dataset.price;
+      document.getElementById('productDescription').textContent = this.dataset.description;
+      document.getElementById('quantity').value = 1;
+
+      // Store product info for cart
+      document.getElementById('addToCartBtn').onclick = () => {
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const name = btn.dataset.name;
+        const price = btn.dataset.price;
+        const img = btn.dataset.img;
+
+       // Get existing cart or start new
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if item already exists
+        const existingIndex = cart.findIndex(item => item.name === name);
+        if (existingIndex > -1) {
+          cart[existingIndex].quantity += quantity;
+        } else {
+          cart.push({ name, price, img, quantity });
+        }
+
+        // Save updated cart
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(`${name} (x${quantity}) added to cart!`);
+        modal.hide();
+      };
+
+      modal.show();
+    });
+  });
+
+
+
+</script>
+    <div class="text-center p-3 bg-dark text-white">
+        Forkids © 2025.All rights reserved
+    </div>
+</body>
+</html>

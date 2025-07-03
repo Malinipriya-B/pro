@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <img src="image/shoplogo.jpg" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-5">
+            <a class="nav-link active" aria-current="page" href="demo1.html">HOME</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="Categories.html">CATEGORIES</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="about.html">ABOUT</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="contact.html">CONTACT</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link active" href="login.html">LOGIN</a>
+          </li>
+          <!-- Place this inside your navbar, e.g., after LOGIN link -->
+          <li class="nav-item me-5">
+            <a class="nav-link position-relative" href="cart.html">
+              🛒 Cart
+              <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <h2 class="mb-4">🛒 Your Shopping Cart</h2>
+
+    <ul id="cartItems" class="list-group mb-4"></ul>
+
+    <h4>Total: ₹<span id="totalPrice">0</span></h4>
+
+    <button class="btn btn-primary me-2" onclick="checkout()">Checkout</button>
+    <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+  </div>
+
+  <div class="row mx-5">
+    <div class="col">
+      <img src="image/shoplogo.jpg" alt="Logo" width="150" height="150" class="d-inline-block align-text-top">
+      <p>As a family-run business,we know the importance of exceptional customer service.</p>
+
+    </div>
+    <div class="col">
+      <h4>CONTACT US</h4>
+      <p>PICKUP STORE LOCATION</p>
+      <p>Coimbatore,TamilNadu,India</p>
+      <p>9087657756</p>
+      <p>asdas@gmail.com</p>
+    </div>
+    <div class="col">
+      <h4>COMPANY</h4>
+      <ul>
+        <li>Bulk Orders</li>
+        <li>Privacy Policy</li>
+        <li>Terms &amp; Conditions</li>
+        <li>Payments &amp; Returns</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>NEWSLETTER</h4>
+      <p>Subscribe to our Newsletter to get Special Offers and Discounts.</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Email Address" aria-label="Recipient’s username"
+          aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center p-3 bg-dark text-white">
+    Forkids © 2025.All rights reserved
+  </div>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItemsEl = document.getElementById("cartItems");
+      const totalPriceEl = document.getElementById("totalPrice");
+      cartItemsEl.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = "<li class='list-group-item'>Your cart is empty.</li>";
+        totalPriceEl.textContent = "0";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const price = parseInt(item.price.replace(/[^\d]/g, "")); // handles ₹40 - ₹80
+        const itemTotal = price * item.quantity;
+        total += itemTotal;
+
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.innerHTML = `
+          <div class="d-flex align-items-center">
+            <img src="${item.img}" width="60" class="me-3 rounded">
+            <div>
+              <strong>${item.name}</strong><br>
+              Price: ${item.price}<br>
+              Qty: 
+              <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, -1)">−</button>
+              <span class="mx-2">${item.quantity}</span>
+              <button class="btn btn-sm btn-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+              <br>
+              <button class="btn btn-sm btn-outline-danger mt-1" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+          <div><strong>₹${itemTotal}</strong></div>
+        `;
+        cartItemsEl.appendChild(li);
+      });
+
+      totalPriceEl.textContent = total;
+    }
+
+    function updateQuantity(index, change) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      localStorage.removeItem("cart");
+      renderCart();
+    }
+
+    function checkout() {
+      alert("Thank you for your purchase!");
+      clearCart();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+
+
+    function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartCountEl = document.getElementById("cartCount");
+  if (cartCountEl) {
+    cartCountEl.textContent = count;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCart();
+  updateCartCount(); // Call this to show count in badge
+});
+function addToCart(name, price, img) {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ name, price, img, quantity: 1 });
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount(); // 👈 live update
+  alert("Item added to cart!");
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById("cartCount").textContent = count;
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
+  </script>
+
+</body>
+</html>
